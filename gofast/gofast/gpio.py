@@ -16,7 +16,7 @@ void set_low_event(int gpio, int enable);
 int eventdetected(int gpio);
 void cleanup(void);
     """)
-C = ffi.verify(sources=['../c/c_gpio.c'], ext_package='gofast', modulename='_gpio')
+C = ffi.verify(sources=['./c/c_gpio.c'], ext_package='gofast', modulename='_gpio')
 
 write = C.output_gpio
 read = C.input_gpio
