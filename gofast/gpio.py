@@ -24,7 +24,9 @@ cleanup = C.cleanup
 setup = C.setup_gpio
 
 if C.setup():
-    raise RuntimeError("Error initializing GPIO")
+    def error(*args):
+        raise RuntimeError("Error initializing GPIO")
+    write, read, cleanup, setup = error, error, error, error
 
 INPUT = 1
 OUTPUT = 0
