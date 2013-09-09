@@ -34,7 +34,6 @@ pin = 18
 while True:
     bits = list(util.receive(pin))
     if bits:
-        print('(%s) %d bits' % (datetime.datetime.now().ctime(), len(bits),))
         res = []
         for i in range(len(bits) // 8):
             byte = bits[i*8:(i+1)*8]
@@ -42,5 +41,6 @@ while True:
             for i in range(8):
                 b += (1 << i) * byte[i]
             res.append(chr(b))
-        print(''.join(res))
+        data = ''.join(res)
+        print('%s:\n\t%r \n\t(%d bits)' % (datetime.datetime.now().ctime(), data, len(bits),))
 
