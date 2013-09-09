@@ -1,9 +1,6 @@
 from distutils.core import setup
 
-try:
-    import gpio
-except RuntimeError:
-    pass
+import gpio
 
 setup(name='gofast',
     author='Charles Goddard',

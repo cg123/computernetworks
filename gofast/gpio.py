@@ -37,3 +37,6 @@ LOW = 0
 PUD_OFF  = 0
 PUD_DOWN = 1
 PUD_UP   = 2
+
+import atexit
+atexit.register(cleanup)
