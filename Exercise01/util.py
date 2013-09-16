@@ -84,7 +84,7 @@ def transmit(pin, data, delay=0.1):
     gpio.output(pin, False)
 
 
-RCTHRESH = 0.00008
+RCTHRESH = 0.000065
 
 def receive(pin, delay=0.1):
 
