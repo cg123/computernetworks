@@ -83,13 +83,16 @@ def transmit(pin, data, delay=0.1):
         pass
     gpio.output(pin, False)
 
+
+RCTHRESH = 0.00008
+
 def receive(pin, delay=0.1):
 
     rc = AveragedSample(x0=0.0, samples=5)
 
     state = False
     # Gather initial samples and spin until we're in the state we expect
-    while rc.idx < len(rc.samples) - 1 and (rc.evaluate() < 0.00009) != state:
+    while rc.idx < len(rc.samples) - 1 and (rc.evaluate() < RCTHRESH) != state:
         rc.add(measure_rc(pin))
 
     f = open('log.txt', 'a')
@@ -116,7 +119,7 @@ def receive(pin, delay=0.1):
             pts.append([time.time(), newrc])
 
         # Check for state change
-        new_state = rc.evaluate() < 0.00009  # TODO: make less arbitrary
+        new_state = rc.evaluate() < RCTHRESH  # TODO: make less arbitrary
         if new_state != state:
             if last_change == 0:
                 last_change = time.time()
